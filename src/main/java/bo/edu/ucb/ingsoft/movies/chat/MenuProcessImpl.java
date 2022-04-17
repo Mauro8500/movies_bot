@@ -1,7 +1,7 @@
 package bo.edu.ucb.ingsoft.movies.chat;
 
-//import bo.edu.ucb.ingsoft.movies.chat.widgets.AbstractWidget;
-//import bo.edu.ucb.ingsoft.movies.chat.widgets.MenuWidgetImpl;
+import bo.edu.ucb.ingsoft.movies.chat.widgets.AbstractWidget;
+import bo.edu.ucb.ingsoft.movies.chat.widgets.MenuWidgetImpl;
 import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;

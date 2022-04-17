@@ -31,7 +31,7 @@ public class MoviesApplication {
 			// Inicializamos libreria de bots
 			TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
 			// Registramos la implementación de nuestro BOT
-			telegramBotsApi.registerBot(new MoviesLongPollingBot());
+			telegramBotsApi.registerBot(new MoviesLongPollingBot(context));
 		} catch (TelegramApiException e) {
 			e.printStackTrace();
 		}
