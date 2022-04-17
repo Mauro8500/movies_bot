@@ -32,7 +32,7 @@ public class MenuProcessImpl extends AbstractProcess {
 
 
     @Override
-    public AbstractProcess handle(ApplicationContext context, Update update, HhRrLongPollingBot bot) {
+    public AbstractProcess handle(ApplicationContext context, Update update, MoviesLongPollingBot bot) {
         AbstractProcess result = this; // sigo en el mismo proceso.
         Long chatId = update.getMessage().getChatId();
 
