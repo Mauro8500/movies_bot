@@ -21,12 +21,12 @@ public class MoviesLongPollingBot extends TelegramLongPollingBot {
     private List<BotApiMethod> testMessages = new ArrayList<>();
     private ApplicationContext context;
 
-    public HhRrLongPollingBot(ApplicationContext context) {
+    public MoviesLongPollingBot(ApplicationContext context) {
         this.context = context;
         usersSession = new HashMap<>();
     }
 
-    public HhRrLongPollingBot(ApplicationContext context, boolean test) {
+    public MoviesLongPollingBot(ApplicationContext context, boolean test) {
         this.context = context;
         this.test = test;
         usersSession = new HashMap<>();
