@@ -1,10 +1,10 @@
 package bo.edu.ucb.ingsoft.movies.dto;
 
-public class PermissionDto {
+public class ActorsList {
     private String nombre;
     private String apellido;
 
-    public PermissionDto(String nombre, String apellido) {
+    public ActorsList(String nombre, String apellido) {
         this.nombre = nombre;
         this.apellido = apellido;
 

@@ -1,8 +1,7 @@
 package bo.edu.ucb.ingsoft.movies.chat;
 
-import bo.edu.ucb.ingsoft.movies.bl.PermissionBl;
-import bo.edu.ucb.ingsoft.movies.dto.PermissionDto;
-import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import bo.edu.ucb.ingsoft.movies.bl.ShowActors;
+import bo.edu.ucb.ingsoft.movies.dto.ActorsList;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import java.util.List;
 
@@ -26,11 +25,11 @@ public class QueryPastRequestsProcessImpl extends AbstractProcess {
     @Override
     public AbstractProcess handle(Update update, MoviesLongPollingBot bot) {
         Long chatId = update.getMessage().getChatId();
-        PermissionBl permissionBl = new PermissionBl();
-        List<PermissionDto> permissionList = permissionBl.findLast10PermissionsByChatId(chatId);
+        ShowActors showActors = new ShowActors();
+        List<ActorsList> permissionList = showActors.findLast10PermissionsByChatId(chatId);
         StringBuffer sb = new StringBuffer();
         sb.append("Esta es la lista de actores:\r\n " ).append(permissionList.size());
-        for(PermissionDto permission: permissionList) {
+        for(ActorsList permission: permissionList) {
             sb.append(permission.toString()).append("\n\r");
         }
         sendStringBuffer(bot, chatId, sb);
