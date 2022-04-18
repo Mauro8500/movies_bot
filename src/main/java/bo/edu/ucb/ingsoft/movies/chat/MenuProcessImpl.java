@@ -49,7 +49,7 @@ public class MenuProcessImpl extends AbstractProcess {
                     switch (opcion){
                         case 1 : result = new QueryPastRequestsProcessImpl();
                         break;
-                        case 2 : result = new RequestsPermissionProcessImpl();
+                        case 2 : result = new QueryPastRequestsProcessImpl();
                         break;
                         case 3 : result = new PeliculasGenero();
                         break;

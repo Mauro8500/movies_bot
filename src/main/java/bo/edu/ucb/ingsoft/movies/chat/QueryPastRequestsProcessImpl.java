@@ -28,7 +28,8 @@ public class QueryPastRequestsProcessImpl extends AbstractProcess {
         ShowActors showActors = new ShowActors();
         List<ActorsList> permissionList = showActors.findLast10PermissionsByChatId(chatId);
         StringBuffer sb = new StringBuffer();
-        sb.append("Esta es la lista de actores:\r\n " ).append(permissionList.size());
+        sb.append("Esta es la lista de actores:\r\n\r\n " ).append(permissionList.size());
+        sb.append("PRESIONA CUALQUIER TECLA PARA VOLVER\r\n\r\n " );
         for(ActorsList permission: permissionList) {
             sb.append(permission.toString()).append("\n\r");
         }
