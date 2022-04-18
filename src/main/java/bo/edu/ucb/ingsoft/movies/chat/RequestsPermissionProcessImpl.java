@@ -8,7 +8,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 public class RequestsPermissionProcessImpl extends AbstractProcess {
 
     public RequestsPermissionProcessImpl() {
-        this.setName("Solicitar permiso");
+        this.setName("BUSQUEDA EXITOSA");
         this.setDefault(false);
         this.setExpires(false);
         this.setStartDate(System.currentTimeMillis()/1000);
@@ -25,9 +25,10 @@ public class RequestsPermissionProcessImpl extends AbstractProcess {
 
     @Override
     public AbstractProcess handle(Update update, MoviesLongPollingBot bot) {
+        AbstractProcess result = this; // sigo en el mismo proceso.
         Long chatId = update.getMessage().getChatId();
         StringBuffer sb = new StringBuffer();
-        sb.append("Solicitar permiso \r\n");
+        sb.append("BUSQUEDA EXITOSA \r\n");
 
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId.toString());

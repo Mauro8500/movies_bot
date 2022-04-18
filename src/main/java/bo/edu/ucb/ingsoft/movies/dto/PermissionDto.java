@@ -1,46 +1,37 @@
 package bo.edu.ucb.ingsoft.movies.dto;
 
 public class PermissionDto {
-    private String startDate;
-    private String endDate;
-    private String reason;
+    private String nombre;
+    private String apellido;
 
-    public PermissionDto(String startDate, String endDate, String reason) {
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.reason = reason;
+    public PermissionDto(String nombre, String apellido) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+
     }
 
-    public String getStartDate() {
-        return startDate;
+    public String getnombre() {
+        return nombre;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
+    public void setnombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getEndDate() {
-        return endDate;
+    public String getapellido() {
+        return apellido;
     }
 
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
+    public void setapellido(String apellido) {
+        this.apellido = apellido;
     }
 
-    public String getReason() {
-        return reason;
-    }
-
-    public void setReason(String reason) {
-        this.reason = reason;
-    }
 
     @Override
     public String toString() {
-        return "PermissionDto{" +
-                "startDate='" + startDate + '\'' +
-                ", endDate='" + endDate + '\'' +
-                ", reason='" + reason + '\'' +
+        return "namesactors{" +
+                "nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
                 '}';
     }
 }

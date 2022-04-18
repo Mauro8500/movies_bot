@@ -42,7 +42,7 @@ public class PeliculasGenero extends AbstractProcess {
                 try {
                     int opcion = Integer.parseInt(text);
                     switch (opcion){
-                        case 1 : result = new QueryPastRequestsProcessImpl();
+                        case 1 : result = new RequestsPermissionProcessImpl();
                         break;
                         case 2 : result = new RequestsPermissionProcessImpl();
                         break;
