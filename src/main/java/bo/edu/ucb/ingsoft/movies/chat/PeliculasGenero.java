@@ -1,43 +1,38 @@
 package bo.edu.ucb.ingsoft.movies.chat;
 
 import bo.edu.ucb.ingsoft.movies.chat.widgets.AbstractWidget;
-import bo.edu.ucb.ingsoft.movies.chat.widgets.MenuWidgetImpl;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+public class PeliculasGenero extends AbstractProcess {
 
-public class MenuProcessImpl extends AbstractProcess {
-
-    public MenuProcessImpl() {
-        this.setName("Menú principal");
-        this.setDefault(true);
+    public PeliculasGenero() {
+        this.setName("Genero de peliculas");
+        this.setDefault(false);
         this.setExpires(false);
         this.setStartDate(System.currentTimeMillis()/1000);
-        this.setUserData(new HashMap<>());
+        //this.setUserData(new HashMap<>());
         this.setStatus("STARTED");
     }
 
-    // Retornar un Widget de tipo menu
+
+    // Retornar un Widget Solicitando Fecha Inicio
 //    @Override
 //    public AbstractWidget onInit() {
-//        MenuWidgetImpl menuWidget = new MenuWidgetImpl(messages);
-//        return menuWidget;
+//        return null;
 //    }
-
 
     @Override
     public AbstractProcess handle(Update update, MoviesLongPollingBot bot) {
         AbstractProcess result = this; // sigo en el mismo proceso.
         Long chatId = update.getMessage().getChatId();
-
+        //StringBuffer sb = new StringBuffer();
         if (this.getStatus().equals("STARTED")) {
 
-            showMainMenu(bot, chatId);
+            PeliculasG(bot, chatId);
         } else if (this.getStatus().equals("AWAITING_USER_RESPONSE")) {
             // Estamos esperando por un numero 1 o 2
             Message message = update.getMessage();
@@ -51,30 +46,34 @@ public class MenuProcessImpl extends AbstractProcess {
                         break;
                         case 2 : result = new RequestsPermissionProcessImpl();
                         break;
-                        case 3 : result = new PeliculasGenero();
+                        case 3 : result = new RequestsPermissionProcessImpl();
                         break;
                         case 4 : result = new RequestsPermissionProcessImpl();
                         break;
-                        default: showMainMenu(bot, chatId);
+                        case 5 : result = new MenuProcessImpl();
+                        break;
+                        default: PeliculasG(bot, chatId);
                     }
                 } catch (NumberFormatException ex) {
-                    showMainMenu(bot, chatId);
+                    PeliculasG(bot, chatId);
                 }
                 // continuar con el proceso seleccionado
             } else { // Si me enviaron algo diferente de un texto.
-                showMainMenu(bot, chatId);
+                PeliculasG(bot, chatId);
             }
         }
         return result;
     }
 
-    private void showMainMenu(MoviesLongPollingBot bot, Long chatId) {
+
+    private void PeliculasG(MoviesLongPollingBot bot, Long chatId) {
         StringBuffer sb = new StringBuffer();
-        sb.append("MENU PRINCIPAL - Movies\r\n");
-        sb.append("1. Buscar pelicula por nombre\r\n");
-        sb.append("2. Buscar pelicula por actor\r\n");
-        sb.append("3. Buscar pelicula por genero\r\n");
-        sb.append("4. Buscar pelicula por numero de premios\r\n");
+        sb.append("Genero de peliculas - Movies\r\n");
+        sb.append("1. Accion\r\n");
+        sb.append("2. Ficcion\r\n");
+        sb.append("3. Terror\r\n");
+        sb.append("4. Romance\r\n");
+        sb.append("5. Volver\r\n");
         sb.append("Elija una opción:\r\n");
         sendStringBuffer(bot, chatId, sb);
 
@@ -83,8 +82,6 @@ public class MenuProcessImpl extends AbstractProcess {
         String nombreCompleto = nombre + " " + apellido;
         this.setStatus("AWAITING_USER_RESPONSE");
     }
-
-
 
     @Override
     public AbstractProcess onError() {
