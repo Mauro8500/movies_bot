@@ -12,8 +12,14 @@ public class PermissionBl {
 
     public List<PermissionDto> findLast10PermissionsByChatId(Long chatId) {
         List<PermissionDto> result = new ArrayList<>();
-        result.add(new PermissionDto("10/12/2021", "12/12/2021", "Cuenta vacación"));
-        result.add(new PermissionDto("23/12/2021", "26/12/2021", "Navidad"));
+        result.add(new PermissionDto("Will", "Smith"));
+        result.add(new PermissionDto("John", "Krasinsky"));
+        result.add(new PermissionDto("Billy", "Murray"));
+        result.add(new PermissionDto("Ewan", "McGregor"));
+        result.add(new PermissionDto("Robbie", "Williams"));
+        result.add(new PermissionDto("Silvester", "Stalone"));
+        result.add(new PermissionDto("Samuel", "Jackson"));
+        result.add(new PermissionDto("Mark", "Hamill"));
         return result;
     }
 }

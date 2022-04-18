@@ -72,7 +72,7 @@ public class MenuProcessImpl extends AbstractProcess {
         StringBuffer sb = new StringBuffer();
         sb.append("MENU PRINCIPAL - Movies\r\n");
         sb.append("1. Buscar pelicula por nombre\r\n");
-        sb.append("2. Buscar pelicula por actor\r\n");
+        sb.append("2. Ver lista de actores\r\n");
         sb.append("3. Buscar pelicula por genero\r\n");
         sb.append("4. Buscar pelicula por numero de premios\r\n");
         sb.append("Elija una opción:\r\n");

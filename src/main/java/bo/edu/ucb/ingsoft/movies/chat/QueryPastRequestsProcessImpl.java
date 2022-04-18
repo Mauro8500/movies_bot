@@ -9,7 +9,7 @@ import java.util.List;
 public class QueryPastRequestsProcessImpl extends AbstractProcess {
 
     public QueryPastRequestsProcessImpl() {
-        this.setName("Consultar solicitudes pasadas");
+        this.setName("Consultar lista de actores");
         this.setDefault(false);
         this.setExpires(false);
         this.setStartDate(System.currentTimeMillis()/1000);
@@ -29,8 +29,7 @@ public class QueryPastRequestsProcessImpl extends AbstractProcess {
         PermissionBl permissionBl = new PermissionBl();
         List<PermissionDto> permissionList = permissionBl.findLast10PermissionsByChatId(chatId);
         StringBuffer sb = new StringBuffer();
-        sb.append("Este año has solicitado " ).append(permissionList.size());
-        sb.append(" permisos. Bajo el siguiente detalle\r\n");
+        sb.append("Esta es la lista de actores:\r\n " ).append(permissionList.size());
         for(PermissionDto permission: permissionList) {
             sb.append(permission.toString()).append("\n\r");
         }
