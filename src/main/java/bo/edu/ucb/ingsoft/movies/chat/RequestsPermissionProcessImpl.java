@@ -1,13 +1,11 @@
 package bo.edu.ucb.ingsoft.movies.chat;
 
-
 import bo.edu.ucb.ingsoft.movies.chat.widgets.AbstractWidget;
-import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-public class RequestsPermissionProcessImpl extends AbstractProcess {  
+public class RequestsPermissionProcessImpl extends AbstractProcess {
 
     public RequestsPermissionProcessImpl() {
         this.setName("Solicitar permiso");
@@ -26,7 +24,7 @@ public class RequestsPermissionProcessImpl extends AbstractProcess {
 //    }
 
     @Override
-    public AbstractProcess handle(ApplicationContext context, Update update, MoviesLongPollingBot bot) {
+    public AbstractProcess handle(Update update, MoviesLongPollingBot bot) {
         Long chatId = update.getMessage().getChatId();
         StringBuffer sb = new StringBuffer();
         sb.append("Solicitar permiso \r\n");

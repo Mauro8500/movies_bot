@@ -2,21 +2,13 @@ package bo.edu.ucb.ingsoft.movies.chat;
 
 import bo.edu.ucb.ingsoft.movies.bl.PermissionBl;
 import bo.edu.ucb.ingsoft.movies.dto.PermissionDto;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import java.util.List;
 
-@Service
 public class QueryPastRequestsProcessImpl extends AbstractProcess {
 
-    private PermissionBl permissionBl;
-
-    @Autowired
-    public QueryPastRequestsProcessImpl(PermissionBl permissionBl) {
-        this.permissionBl = permissionBl;
+    public QueryPastRequestsProcessImpl() {
         this.setName("Consultar solicitudes pasadas");
         this.setDefault(false);
         this.setExpires(false);
@@ -32,8 +24,9 @@ public class QueryPastRequestsProcessImpl extends AbstractProcess {
 //    }
 
     @Override
-    public AbstractProcess handle(ApplicationContext context, Update update, MoviesLongPollingBot bot) {
+    public AbstractProcess handle(Update update, MoviesLongPollingBot bot) {
         Long chatId = update.getMessage().getChatId();
+        PermissionBl permissionBl = new PermissionBl();
         List<PermissionDto> permissionList = permissionBl.findLast10PermissionsByChatId(chatId);
         StringBuffer sb = new StringBuffer();
         sb.append("Este año has solicitado " ).append(permissionList.size());
@@ -60,4 +53,3 @@ public class QueryPastRequestsProcessImpl extends AbstractProcess {
         return null;
     }
 }
-

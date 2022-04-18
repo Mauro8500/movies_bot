@@ -1,6 +1,5 @@
 package bo.edu.ucb.ingsoft.movies.chat;
 
-import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -19,27 +18,24 @@ public class MoviesLongPollingBot extends TelegramLongPollingBot {
     private Map<Long, AbstractProcess> usersSession;
     private boolean test = false;
     private List<BotApiMethod> testMessages = new ArrayList<>();
-    private ApplicationContext context;
 
-    public MoviesLongPollingBot(ApplicationContext context) {
-        this.context = context;
+    public MoviesLongPollingBot() {
         usersSession = new HashMap<>();
     }
 
-    public MoviesLongPollingBot(ApplicationContext context, boolean test) {
-        this.context = context;
+    public MoviesLongPollingBot(boolean test) {
         this.test = test;
         usersSession = new HashMap<>();
     }
 
     @Override
     public String getBotUsername() {
-        return "ucb_movies_2022_bot";
+        return "ucb_hr_2022_bot";
     }
 
     @Override
     public String getBotToken() {
-        return "5315786613:AAEIAcHrRJzYuBjHdUcFhUkv2Nf6Jt_ncGo";
+        return "5178064699:AAHU55YGImwYD7tlrEarAxVsq12IDPKOSNA";
     }
 
     public void sendMyMessage(BotApiMethod method) throws TelegramApiException {
@@ -66,11 +62,11 @@ public class MoviesLongPollingBot extends TelegramLongPollingBot {
             currentProcess = new MenuProcessImpl();
             usersSession.put(chatId, currentProcess);
             System.out.println("Derivando la conversación al proceso: " + currentProcess.getName());
-            AbstractProcess nextProcess = currentProcess.handle(context, update, this);
+            AbstractProcess nextProcess = currentProcess.handle(update, this);
 
             if (!nextProcess.equals(currentProcess)) { // Si el siguiente proceso es diferente lo iniciamos
                 System.out.println("Iniciando siguiente proceso: " + nextProcess.getName());
-                nextProcess.handle(context, update, this);
+                nextProcess.handle(update, this);
             } else {
                 System.out.println("No hay cambio de proceso, así que termina conversación");
             }
@@ -79,11 +75,11 @@ public class MoviesLongPollingBot extends TelegramLongPollingBot {
         } else { // Ya existe un proceso
             System.out.println("Continuamos el proceso para el  chatId: " + chatId
                     + " proceso: " + currentProcess.getName());
-            AbstractProcess nextProcess = currentProcess.handle(context, update, this);
+            AbstractProcess nextProcess = currentProcess.handle(update, this);
 
             if (!nextProcess.equals(currentProcess)) { // Si el siguiente proceso es diferente
                 System.out.println("Iniciando siguiente proceso: " + nextProcess.getName());
-                nextProcess = nextProcess.handle(context, update, this);
+                nextProcess = nextProcess.handle(update, this);
             } else {
                 System.out.println("No hay cambio de proceso, así que termina conversación");
             }
@@ -96,4 +92,3 @@ public class MoviesLongPollingBot extends TelegramLongPollingBot {
         return testMessages;
     }
 }
-

@@ -2,7 +2,6 @@ package bo.edu.ucb.ingsoft.movies.chat;
 
 import bo.edu.ucb.ingsoft.movies.chat.widgets.AbstractWidget;
 import bo.edu.ucb.ingsoft.movies.chat.widgets.MenuWidgetImpl;
-import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -32,7 +31,7 @@ public class MenuProcessImpl extends AbstractProcess {
 
 
     @Override
-    public AbstractProcess handle(ApplicationContext context, Update update, MoviesLongPollingBot bot) {
+    public AbstractProcess handle(Update update, MoviesLongPollingBot bot) {
         AbstractProcess result = this; // sigo en el mismo proceso.
         Long chatId = update.getMessage().getChatId();
 
@@ -41,7 +40,6 @@ public class MenuProcessImpl extends AbstractProcess {
             showMainMenu(bot, chatId);
         } else if (this.getStatus().equals("AWAITING_USER_RESPONSE")) {
             // Estamos esperando por un numero 1 o 2
-
             Message message = update.getMessage();
             if ( message.hasText() ) {
                 // Intentamos transformar en número
@@ -49,9 +47,9 @@ public class MenuProcessImpl extends AbstractProcess {
                 try {
                     int opcion = Integer.parseInt(text);
                     switch (opcion){
-                        case 1 : result = context.getBean(QueryPastRequestsProcessImpl.class) ;
+                        case 1 : result = new QueryPastRequestsProcessImpl();
                         break;
-                        case 2 : result = new RequestsPermissionProcessImpl(); // FIXME
+                        case 2 : result = new RequestsPermissionProcessImpl();
                         break;
                         default: showMainMenu(bot, chatId);
                     }
