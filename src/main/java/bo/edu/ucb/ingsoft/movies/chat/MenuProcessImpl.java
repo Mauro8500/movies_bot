@@ -53,7 +53,7 @@ public class MenuProcessImpl extends AbstractProcess {
                         break;
                         case 3 : result = new PeliculasGenero();
                         break;
-                        case 4 : result = new RequestsPermissionProcessImpl();
+                        case 4 : result = new PeliculaPremios();
                         break;
                         default: showMainMenu(bot, chatId);
                     }
