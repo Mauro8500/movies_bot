@@ -1,5 +1,6 @@
 package bo.edu.ucb.ingsoft.movies.chat;
 
+import bo.edu.ucb.ingsoft.movies.bl.ShowActors;
 import bo.edu.ucb.ingsoft.movies.chat.widgets.AbstractWidget;
 import bo.edu.ucb.ingsoft.movies.chat.widgets.MenuWidgetImpl;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -47,9 +48,9 @@ public class MenuProcessImpl extends AbstractProcess {
                 try {
                     int opcion = Integer.parseInt(text);
                     switch (opcion){
-                        case 1 : result = new QueryPastRequestsProcessImpl();
+                        case 1 : result = new ObtenerPeliculas();
                         break;
-                        case 2 : result = new RequestsPermissionProcessImpl();
+                        case 2 : result = new QueryPastRequestsProcessImpl();
                         break;
                         case 3 : result = new PeliculasGenero();
                         break;
@@ -71,10 +72,10 @@ public class MenuProcessImpl extends AbstractProcess {
     private void showMainMenu(MoviesLongPollingBot bot, Long chatId) {
         StringBuffer sb = new StringBuffer();
         sb.append("MENU PRINCIPAL - Movies\r\n");
-        sb.append("1. Buscar pelicula por nombre\r\n");
+        sb.append("1. Ver lista de peliculas disponibles\r\n");
         sb.append("2. Ver lista de actores\r\n");
         sb.append("3. Buscar pelicula por genero\r\n");
-        sb.append("4. Buscar pelicula por numero de premios\r\n");
+        sb.append("4. Buscar pelicula por actores\r\n");
         sb.append("Elija una opción:\r\n");
         sendStringBuffer(bot, chatId, sb);
 
