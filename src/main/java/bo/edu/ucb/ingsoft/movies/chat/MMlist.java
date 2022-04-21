@@ -7,10 +7,10 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-public class Accion extends AbstractProcess {
+public class MMlist extends AbstractProcess {
 
-    public Accion() {
-        this.setName("Peliculas de accion");
+    public MMlist() {
+        this.setName("Peliculas lista");
         this.setDefault(false);
         this.setExpires(false);
         this.setStartDate(System.currentTimeMillis()/1000);
@@ -32,7 +32,7 @@ public class Accion extends AbstractProcess {
         //StringBuffer sb = new StringBuffer();
         if (this.getStatus().equals("STARTED")) {
 
-            AccionG(bot, chatId);
+            MenuMM(bot, chatId);
         } else if (this.getStatus().equals("AWAITING_USER_RESPONSE")) {
             // Estamos esperando por un numero 1 o 2
             Message message = update.getMessage();
@@ -42,33 +42,29 @@ public class Accion extends AbstractProcess {
                 try {
                     int opcion = Integer.parseInt(text);
                     switch (opcion){
-                        case 1 : result = new ConfirReservaElpadrino();
+                        
+                        case 1 : result = new MenuMM();
                         break;
-                        case 2 : result = new ConfirReservaScarface();
-                        break;
-                        case 3 : result = new PeliculasGenero();
-                        break;
-                        default: AccionG(bot, chatId);
+                        default: MenuMM(bot, chatId);
                     }
                 } catch (NumberFormatException ex) {
-                    AccionG(bot, chatId);
+                    MenuMM(bot, chatId);
                 }
                 // continuar con el proceso seleccionado
             } else { // Si me enviaron algo diferente de un texto.
-                AccionG(bot, chatId);
+                MenuMM(bot, chatId);
             }
         }
         return result;
     }
 
 
-    private void AccionG(MoviesLongPollingBot bot, Long chatId) {
+    private void MenuMM(MoviesLongPollingBot bot, Long chatId) {
         StringBuffer sb = new StringBuffer();
-        sb.append("Peliculas de accion - Movies\r\n");
-        sb.append("1. El padrino\r\n");
-        sb.append("2. Scarface\r\n");
-        sb.append("3. Volver\r\n");
-        sb.append("Elija una opción:\r\n");
+        sb.append("Lista de mis peliculas\r\n");
+        sb.append(" Mad Max\r\n");
+        sb.append("1. Volver\r\n");
+        sb.append("Presiona 1 para volver\r\n");
         sendStringBuffer(bot, chatId, sb);
 
         String nombre = "Juan";
@@ -91,4 +87,5 @@ public class Accion extends AbstractProcess {
     public AbstractProcess onTimeout() {
         return null;
     }
+    
 }

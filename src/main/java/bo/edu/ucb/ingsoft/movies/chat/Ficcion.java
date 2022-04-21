@@ -42,9 +42,9 @@ public class Ficcion extends AbstractProcess {
                 try {
                     int opcion = Integer.parseInt(text);
                     switch (opcion){
-                        case 1 : result = new RequestsPermissionProcessImpl();
+                        case 1 : result = new ConfirReservaStarWars();
                         break;
-                        case 2 : result = new RequestsPermissionProcessImpl();
+                        case 2 : result = new ConfirReservaMadMax();
                         break;
                         case 3 : result = new PeliculasGenero();
                         break;
