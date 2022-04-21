@@ -63,7 +63,7 @@ public class EPlist extends AbstractProcess {
     private void MenuEP(MoviesLongPollingBot bot, Long chatId) {
         StringBuffer sb = new StringBuffer();
         sb.append("Lista de mis peliculas\r\n");
-        sb.append(" Mad Max\r\n");
+        sb.append(" El padrino\r\n");
         sb.append("1. Volver\r\n");
         sb.append("Presiona 1 para volver\r\n");
         sendStringBuffer(bot, chatId, sb);

@@ -75,7 +75,6 @@ public class MenuProcessImpl extends AbstractProcess {
         sb.append("1. Ver lista de peliculas disponibles\r\n");
         sb.append("2. Ver lista de actores\r\n");
         sb.append("3. Reservar pelicula segun el genero\r\n");
-        sb.append("4. Buscar pelicula por año\r\n");
         sb.append("Elija una opción:\r\n");
         sendStringBuffer(bot, chatId, sb);
 

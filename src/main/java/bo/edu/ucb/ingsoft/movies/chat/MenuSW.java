@@ -48,7 +48,7 @@ public class MenuSW extends AbstractProcess {
                 try {
                     int opcion = Integer.parseInt(text);
                     switch (opcion){
-                        case 1 : result = new ObtenerPeliculas();
+                        case 1 : result = new ObtenerPeliculas1();
                         break;
                         case 2 : result = new QueryPastRequestsProcessImpl();
                         break;
@@ -76,7 +76,7 @@ public class MenuSW extends AbstractProcess {
         sb.append("MENU PRINCIPAL - Movies\r\n");
         sb.append("1. Ver lista de peliculas disponibles\r\n");
         sb.append("2. Ver lista de actores\r\n");
-        sb.append("3. Buscar pelicula por genero\r\n");
+        sb.append("3. Reservar pelicula segun el genero\r\n");
         sb.append("4. Buscar pelicula por año\r\n");
         sb.append("5. Mis peliculas\r\n");
         sb.append("Elija una opción:\r\n");

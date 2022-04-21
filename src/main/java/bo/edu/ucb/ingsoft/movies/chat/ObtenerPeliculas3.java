@@ -1,13 +1,12 @@
 package bo.edu.ucb.ingsoft.movies.chat;
 
-import bo.edu.ucb.ingsoft.movies.bl.ShowActors;
-import bo.edu.ucb.ingsoft.movies.dto.ActorsList;
+import bo.edu.ucb.ingsoft.movies.bl.ShowMovies3;
+import bo.edu.ucb.ingsoft.movies.dto.MovieList;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import java.util.List;
 
-public class QueryPastRequestsProcessImpl extends AbstractProcess {
-
-    public QueryPastRequestsProcessImpl() {
+public class ObtenerPeliculas3 extends AbstractProcess {
+    public ObtenerPeliculas3() {
         this.setName("Consultar lista de actores");
         this.setDefault(false);
         this.setExpires(false);
@@ -25,16 +24,16 @@ public class QueryPastRequestsProcessImpl extends AbstractProcess {
     @Override
     public AbstractProcess handle(Update update, MoviesLongPollingBot bot) {
         Long chatId = update.getMessage().getChatId();
-        ShowActors showActors = new ShowActors();
-        List<ActorsList> permissionList = showActors.findLast10PermissionsByChatId(chatId);
+        ShowMovies3 showActors = new ShowMovies3();
+        List<MovieList> permissionList = showActors.findmovies(chatId);
         StringBuffer sb = new StringBuffer();
-        sb.append("Esta es la lista de actores:\r\n\r\n " ).append(permissionList.size());
-        sb.append("PRESIONA CUALQUIER TECLA PARA VOLVER AL MENU\r\n\r\n " );
-        for(ActorsList permission: permissionList) {
+        sb.append("Esta es la lista pelicuals disponible:\r\n\r\n " ).append(permissionList.size());
+        sb.append("PRESIONA CUALQUIER TECLA PARA VOLVER ATRAS\r\n\r\n " );
+        for(MovieList permission: permissionList) {
             sb.append(permission.toString()).append("\n\r");
         }
         sendStringBuffer(bot, chatId, sb);
-        return new MenuProcessImpl();
+        return new MenuEP();
     }
 
     @Override
