@@ -1,27 +1,23 @@
 package bo.edu.ucb.ingsoft.movies.chat;
 
+import bo.edu.ucb.ingsoft.movies.bl.customerBl;
+import bo.edu.ucb.ingsoft.movies.dto.customerDto;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.HashMap;
+import java.util.List;
 
-public class MenuProcessImpl extends AbstractProcess {
+public class MenuBusquedaCustomer extends AbstractProcess {
 
-    public MenuProcessImpl() {
-        this.setName("Menú principal");
+    public MenuBusquedaCustomer() {
+        this.setName("BUSQUEDA POR NOMBRE");
         this.setDefault(true);
         this.setExpires(false);
         this.setStartDate(System.currentTimeMillis()/1000);
         this.setUserData(new HashMap<>());
         this.setStatus("STARTED");
     }
-
-    // Retornar un Widget de tipo menu
-//    @Override
-//    public AbstractWidget onInit() {
-//        MenuWidgetImpl menuWidget = new MenuWidgetImpl(messages);
-//        return menuWidget;
-//    }
 
 
     @Override
@@ -38,25 +34,17 @@ public class MenuProcessImpl extends AbstractProcess {
             if ( message.hasText() ) {
                 // Intentamos transformar en número
                 String text = message.getText(); // El texto contiene asdasdas
-                try {
-                    int opcion = Integer.parseInt(text);
-                    switch (opcion){
-                        case 1 : result = new QueryPastRequestsProcessImpl();
-                        break;
-                        case 2 : result = new QueryPastRequestsProcessImpl();
-                        break;
-                        case 3 : result = new PeliculasGenero();
-                        break;
-                        case 4 : result = new RequestsPermissionProcessImpl();
-                        break;
-                        case 5 : result = new QueryCity();
-                        break;
-                        case 6 : result = new MenuCartelera();
-                        break;
-                        case 7 : result = new MenuAdministracionCliente();
-                        break;
-                        default: showMainMenu(bot, chatId);
-                    }
+                try
+                {
+                    customerBl customerbl = new customerBl();
+                    List<customerDto> customerdto = customerbl.findcustomerByChatId(chatId);
+                    StringBuffer sb = new StringBuffer();
+                    sb.append(customerbl.busquedaNombre(customerdto,text).toString());
+
+                    sendStringBuffer(bot, chatId, sb);
+                    result = new MenuProcessImpl();
+
+
                 } catch (NumberFormatException ex) {
                     showMainMenu(bot, chatId);
                 }
@@ -70,16 +58,9 @@ public class MenuProcessImpl extends AbstractProcess {
 
     private void showMainMenu(MoviesLongPollingBot bot, Long chatId) {
         StringBuffer sb = new StringBuffer();
-        sb.append("MENU PRINCIPAL - Movies\r\n");
-        sb.append("1. Buscar pelicula por nombre\r\n");
-        sb.append("2. Ver lista de actores\r\n");
-        sb.append("3. Buscar pelicula por genero\r\n");
-        sb.append("4. Buscar pelicula por numero de premios\r\n");
-        sb.append("5. Ver Sucursales \r\n");
-        sb.append("6. Menu Cartelera \r\n");
-        sb.append("7. Menu Administracion de Clientes \r\n");
-        sb.append("Elija una opción:\r\n");
-        sendStringBuffer(bot, chatId, sb);
+        sb.append("Ingrese el nombre del Cliente \n\r");
+        sendStringBuffer(bot,chatId,sb);
+
 
         this.setStatus("AWAITING_USER_RESPONSE");
     }

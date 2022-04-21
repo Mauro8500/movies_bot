@@ -42,11 +42,15 @@ public class PeliculasGenero extends AbstractProcess {
                 try {
                     int opcion = Integer.parseInt(text);
                     switch (opcion){
-                        case 1 : result = new Accion();
+                        case 1 : result = new RequestsPermissionProcessImpl();
                         break;
-                        case 2 : result = new Ficcion();
+                        case 2 : result = new RequestsPermissionProcessImpl();
                         break;
                         case 3 : result = new RequestsPermissionProcessImpl();
+                        break;
+                        case 4 : result = new RequestsPermissionProcessImpl();
+                        break;
+                        case 5 : result = new MenuProcessImpl();
                         break;
                         default: PeliculasG(bot, chatId);
                     }
@@ -67,7 +71,9 @@ public class PeliculasGenero extends AbstractProcess {
         sb.append("Genero de peliculas - Movies\r\n");
         sb.append("1. Accion\r\n");
         sb.append("2. Ficcion\r\n");
-        sb.append("3. Volver\r\n");
+        sb.append("3. Terror\r\n");
+        sb.append("4. Romance\r\n");
+        sb.append("5. Volver\r\n");
         sb.append("Elija una opción:\r\n");
         sendStringBuffer(bot, chatId, sb);
 

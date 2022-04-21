@@ -1,4 +1,4 @@
 package bo.edu.ucb.ingsoft.movies.chat;
 
-public class PeliculaPremios {
+public class PeliculaActor {
 }

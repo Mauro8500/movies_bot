@@ -5,24 +5,16 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.HashMap;
 
-public class MenuProcessImpl extends AbstractProcess {
+public class MenuCartelera extends AbstractProcess {
 
-    public MenuProcessImpl() {
-        this.setName("Menú principal");
+    public MenuCartelera() {
+        this.setName("Menu Cartelera");
         this.setDefault(true);
         this.setExpires(false);
         this.setStartDate(System.currentTimeMillis()/1000);
         this.setUserData(new HashMap<>());
         this.setStatus("STARTED");
     }
-
-    // Retornar un Widget de tipo menu
-//    @Override
-//    public AbstractWidget onInit() {
-//        MenuWidgetImpl menuWidget = new MenuWidgetImpl(messages);
-//        return menuWidget;
-//    }
-
 
     @Override
     public AbstractProcess handle(Update update, MoviesLongPollingBot bot) {
@@ -41,20 +33,19 @@ public class MenuProcessImpl extends AbstractProcess {
                 try {
                     int opcion = Integer.parseInt(text);
                     switch (opcion){
-                        case 1 : result = new QueryPastRequestsProcessImpl();
+                        case 1 : result = new QueryFilm();
+                            break;
+                        case 2 : result = new MenuBusquedaFlim();
                         break;
-                        case 2 : result = new QueryPastRequestsProcessImpl();
-                        break;
-                        case 3 : result = new PeliculasGenero();
-                        break;
-                        case 4 : result = new RequestsPermissionProcessImpl();
-                        break;
-                        case 5 : result = new QueryCity();
-                        break;
-                        case 6 : result = new MenuCartelera();
-                        break;
-                        case 7 : result = new MenuAdministracionCliente();
-                        break;
+                        case 3 : result = new QueryCustomer();
+                            break;
+                        case 4 : result = new QueryCustomer();
+                            break;
+                        case 5 : result = new QueryCustomer();
+                            break;
+                        case 6 : result = new QueryCustomer();
+                            break;
+
                         default: showMainMenu(bot, chatId);
                     }
                 } catch (NumberFormatException ex) {
@@ -68,18 +59,17 @@ public class MenuProcessImpl extends AbstractProcess {
         return result;
     }
 
+
     private void showMainMenu(MoviesLongPollingBot bot, Long chatId) {
         StringBuffer sb = new StringBuffer();
-        sb.append("MENU PRINCIPAL - Movies\r\n");
-        sb.append("1. Buscar pelicula por nombre\r\n");
-        sb.append("2. Ver lista de actores\r\n");
-        sb.append("3. Buscar pelicula por genero\r\n");
-        sb.append("4. Buscar pelicula por numero de premios\r\n");
-        sb.append("5. Ver Sucursales \r\n");
-        sb.append("6. Menu Cartelera \r\n");
-        sb.append("7. Menu Administracion de Clientes \r\n");
+
+        sb.append("CARTELERA INFORMACION  \r\n");
+        sb.append("1. Ver todas las peliculas disponibles \r\n");
+        sb.append("2. Buscar peliculas por Nombre\r\n");
+        sb.append("3. Buscar peliculas por Genero\r\n");
         sb.append("Elija una opción:\r\n");
         sendStringBuffer(bot, chatId, sb);
+
 
         this.setStatus("AWAITING_USER_RESPONSE");
     }

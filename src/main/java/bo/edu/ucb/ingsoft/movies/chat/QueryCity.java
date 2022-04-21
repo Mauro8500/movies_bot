@@ -1,22 +1,21 @@
 package bo.edu.ucb.ingsoft.movies.chat;
 
-import bo.edu.ucb.ingsoft.movies.bl.ShowActors;
-
-import bo.edu.ucb.ingsoft.movies.dto.ActorsList;
+import bo.edu.ucb.ingsoft.movies.bl.cityBl;
+import bo.edu.ucb.ingsoft.movies.dto.cityDto;
 import org.telegram.telegrambots.meta.api.objects.Update;
+
 import java.util.List;
 
-public class QueryPastRequestsProcessImpl extends AbstractProcess {
+public class QueryCity extends AbstractProcess {
 
-    public QueryPastRequestsProcessImpl() {
-        this.setName("Consultar lista de actores");
+    public QueryCity() {
+        this.setName("Consultar lista de Ciudades");
         this.setDefault(false);
         this.setExpires(false);
         this.setStartDate(System.currentTimeMillis()/1000);
         //this.setUserData(new HashMap<>());
         this.setStatus("STARTED");
     }
-
     // Retornar un Widget con la información de los permisos solicitados
 //    @Override
 //    public AbstractWidget onInit() {
@@ -26,12 +25,12 @@ public class QueryPastRequestsProcessImpl extends AbstractProcess {
     @Override
     public AbstractProcess handle(Update update, MoviesLongPollingBot bot) {
         Long chatId = update.getMessage().getChatId();
-        ShowActors showActors = new ShowActors();
-        List<ActorsList> permissionList = showActors.findLast10PermissionsByChatId(chatId);
+        cityBl citybl = new cityBl();
+        List<cityDto> permissionList = citybl.findcityByChatId(chatId);
         StringBuffer sb = new StringBuffer();
-        sb.append("Esta es la lista de actores:\r\n\r\n " ).append(permissionList.size());
+        sb.append("Esta es la lista de CIUDADES:\r\n\r\n " ).append("\nEncontrados = "+permissionList.size()+"\n");
         sb.append("PRESIONA CUALQUIER TECLA PARA VOLVER\r\n\r\n " );
-        for(ActorsList permission: permissionList) {
+        for(cityDto permission: permissionList) {
             sb.append(permission.toString()).append("\n\r");
         }
         sendStringBuffer(bot, chatId, sb);

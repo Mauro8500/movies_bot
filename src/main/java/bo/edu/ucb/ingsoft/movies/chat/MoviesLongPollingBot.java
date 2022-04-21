@@ -28,17 +28,14 @@ public class MoviesLongPollingBot extends TelegramLongPollingBot {
         usersSession = new HashMap<>();
     }
 
-
-    //para pruebas cmabien este lugar 
     @Override
     public String getBotUsername() {
-        return "software_movies_bot";
+        return "sergio_ucb_bot";
     }
 
-    //para pruebas cmabien este lugar
     @Override
     public String getBotToken() {
-        return "5196834781:AAHrgR8Ei3_Fgw7WKWiAphJgytGEbmVlHVk";
+        return "5166264710:AAHyZeqBaDGkfRzJVX3Ac7RrlRzbxuzJNvw";
     }
 
     public void sendMyMessage(BotApiMethod method) throws TelegramApiException {
