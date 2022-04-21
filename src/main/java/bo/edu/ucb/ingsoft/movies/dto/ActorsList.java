@@ -30,7 +30,7 @@ public class ActorsList {
     @Override
     public String toString() {
         return " " +
-                " '" + nombre + '\'' +
-                ", '" + apellido + '\'';
+                " " + nombre + '\'' +
+                " " + apellido + '\'';
     }
 }

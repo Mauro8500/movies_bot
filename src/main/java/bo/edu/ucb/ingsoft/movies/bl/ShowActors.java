@@ -11,10 +11,10 @@ public class ShowActors {
 
     public List<ActorsList> findLast10PermissionsByChatId(Long chatId) {
         List<ActorsList> result = new ArrayList<>();
-        result.add(new ActorsList("Will", "Smith"));
-        result.add(new ActorsList("John", "Krasinsky"));
-        result.add(new ActorsList("Ewan", "McGregor"));
-        result.add(new ActorsList("Mark", "Hamill"));
+        result.add(new ActorsList("1. Will", "Smith"));
+        result.add(new ActorsList("2. John", "Krasinsky"));
+        result.add(new ActorsList("3. Ewan", "McGregor"));
+        result.add(new ActorsList("4. Mark", "Hamill"));
         return result;
     }
 }

@@ -11,10 +11,10 @@ public class ShowMovies {
 
     public List<MovieList> findmovies(Long chatId) {
         List<MovieList> result = new ArrayList<>();
-        result.add(new MovieList("Star Wars"));
-        result.add(new MovieList("Mad Max"));
-        result.add(new MovieList("El Padrino"));
-        result.add(new MovieList("Scarface"));
+        result.add(new MovieList("1. Star Wars"));
+        result.add(new MovieList("2. Mad Max"));
+        result.add(new MovieList("3. El Padrino"));
+        result.add(new MovieList("4. Scarface"));
         return result;
     }
 }
