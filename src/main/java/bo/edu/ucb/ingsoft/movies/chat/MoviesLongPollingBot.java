@@ -30,12 +30,12 @@ public class MoviesLongPollingBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return "sergio_ucb_bot";
+        return "software_movies_bot";
     }
 
     @Override
     public String getBotToken() {
-        return "5166264710:AAHyZeqBaDGkfRzJVX3Ac7RrlRzbxuzJNvw";
+        return "5196834781:AAHrgR8Ei3_Fgw7WKWiAphJgytGEbmVlHVk";
     }
 
     public void sendMyMessage(BotApiMethod method) throws TelegramApiException {

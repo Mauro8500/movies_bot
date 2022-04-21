@@ -41,13 +41,11 @@ public class MenuProcessImpl extends AbstractProcess {
                 try {
                     int opcion = Integer.parseInt(text);
                     switch (opcion){
-                        case 1 : result = new QueryPastRequestsProcessImpl();
+                        case 1 : result = new ObtenerPeliculas();
                         break;
                         case 2 : result = new QueryPastRequestsProcessImpl();
                         break;
                         case 3 : result = new PeliculasGenero();
-                        break;
-                        case 4 : result = new RequestsPermissionProcessImpl();
                         break;
                         case 5 : result = new QueryCity();
                         break;
@@ -71,10 +69,9 @@ public class MenuProcessImpl extends AbstractProcess {
     private void showMainMenu(MoviesLongPollingBot bot, Long chatId) {
         StringBuffer sb = new StringBuffer();
         sb.append("MENU PRINCIPAL - Movies\r\n");
-        sb.append("1. Buscar pelicula por nombre\r\n");
+        sb.append("1. Mirar de lista peliculas\r\n");
         sb.append("2. Ver lista de actores\r\n");
         sb.append("3. Buscar pelicula por genero\r\n");
-        sb.append("4. Buscar pelicula por numero de premios\r\n");
         sb.append("5. Ver Sucursales \r\n");
         sb.append("6. Menu Cartelera \r\n");
         sb.append("7. Menu Administracion de Clientes \r\n");
