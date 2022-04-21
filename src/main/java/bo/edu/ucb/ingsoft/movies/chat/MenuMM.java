@@ -54,7 +54,7 @@ public class MenuMM extends AbstractProcess {
                         break;
                         case 3 : result = new PeliculasGenero();
                         break;
-                        case 4 : result = new RequestsPermissionProcessImpl();
+                        case 4 : result = new MenuProcessImpl();
                         break;
                         case 5 : result = new MMlist();
                         break;
@@ -77,7 +77,7 @@ public class MenuMM extends AbstractProcess {
         sb.append("1. Ver lista de peliculas disponibles\r\n");
         sb.append("2. Ver lista de actores\r\n");
         sb.append("3. Reservar pelicula segun el genero\r\n");
-        sb.append("4. Buscar pelicula por año\r\n");
+        sb.append("4. Reiniciar\r\n");
         sb.append("5. Mis peliculas\r\n");
         sb.append("Elija una opción:\r\n");
         sendStringBuffer(bot, chatId, sb);
